@@ -1,0 +1,8 @@
+# My Flomo
+
+开源、免费、简单、专注于核心功能
+
+# 感谢
+
+* [Flomo](https://flomoapp.com/) （灵感来源）
+* [Water.css](https://watercss.kognise.dev/) （让后端工程师脱离 CSS 苦海）
