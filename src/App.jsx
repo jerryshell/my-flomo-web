@@ -1,5 +1,6 @@
 import './App.css'
 import {useEffect, useState} from "react";
+import memoApi from "./api/memoApi";
 
 const mockMemoList = [
     {
@@ -25,9 +26,17 @@ function App() {
 
     useEffect(() => {
         const fetchMemoList = () => {
-            const memoList = mockMemoList
-            console.log('fetchMemoList', memoList)
-            setMemoList(memoList)
+            memoApi.list()
+                .then(response => {
+                    console.log('fetchMemoList response', response)
+                    const success = response.data.success
+                    console.log('fetchMemoList success', success)
+                    if (success) {
+                        const memoList = response.data.data
+                        console.log('fetchMemoList memoList', memoList)
+                        setMemoList(memoList)
+                    }
+                })
         }
         fetchMemoList()
     }, [])
