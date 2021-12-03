@@ -24,20 +24,21 @@ function App() {
     const [memoList, setMemoList] = useState([])
     const [newMemo, setNewMemo] = useState('')
 
+    const fetchMemoList = () => {
+        memoApi.list()
+            .then(response => {
+                console.log('fetchMemoList response', response)
+                const success = response.data.success
+                console.log('fetchMemoList success', success)
+                if (success) {
+                    const memoList = response.data.data
+                    console.log('fetchMemoList memoList', memoList)
+                    setMemoList(memoList)
+                }
+            })
+    }
+
     useEffect(() => {
-        const fetchMemoList = () => {
-            memoApi.list()
-                .then(response => {
-                    console.log('fetchMemoList response', response)
-                    const success = response.data.success
-                    console.log('fetchMemoList success', success)
-                    if (success) {
-                        const memoList = response.data.data
-                        console.log('fetchMemoList memoList', memoList)
-                        setMemoList(memoList)
-                    }
-                })
-        }
         fetchMemoList()
     }, [])
 
@@ -46,9 +47,22 @@ function App() {
     }
 
     const handleSaveBtnClick = () => {
-        alert('施工中🚀')
         console.log('handleSaveBtnClick', newMemo)
+        const postData = {
+            content: newMemo,
+        }
         setNewMemo('')
+        memoApi.create(postData)
+            .then(response => {
+                console.log('handleSaveBtnClick response', response)
+                const success = response.data.success
+                console.log('handleSaveBtnClick success', success)
+                if (success) {
+                    const memo = response.data.data
+                    console.log('handleSaveBtnClick memo', memo)
+                    fetchMemoList()
+                }
+            })
     }
 
     const handleImportBtnClick = () => {
