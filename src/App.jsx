@@ -1,6 +1,7 @@
 import './App.css'
 import {useEffect, useState} from "react";
 import memoApi from "./api/memoApi";
+import MemoListItem from "./compoments/MemoListItem";
 
 function App() {
     const [memoList, setMemoList] = useState([])
@@ -78,26 +79,12 @@ function App() {
             <button onClick={handleSaveBtnClick}>保存</button>
             {
                 memoList.map(memo => (
-                    <details open key={memo.id}>
-                        <summary>
-                            {memo.createdAt}
-                        </summary>
-                        <p style={{whiteSpace: 'pre-line'}}>
-                            {memo.content}
-                            <button
-                                style={{color: '#9E3B37', float: 'right'}}
-                                onClick={() => handleDeleteBtnClick(memo.id)}
-                            >
-                                删除
-                            </button>
-                            <button
-                                style={{marginLeft: '10px', float: 'right'}}
-                                onClick={() => handleEditBtnClick(memo.id)}
-                            >
-                                编辑
-                            </button>
-                        </p>
-                    </details>
+                    <MemoListItem
+                        memo={memo}
+                        handleDeleteBtnClick={handleDeleteBtnClick}
+                        handleEditBtnClick={handleEditBtnClick}
+                        key={memo.id}
+                    />
                 ))
             }
             <p>Created by <a href="https://github.com/jerryshell" target='_blank'>Jerry</a></p>
