@@ -7,6 +7,9 @@ const memoApi = {
     create: data => {
         return api.post('/memo/create', data)
     },
+    deleteById: id => {
+        return api.post(`/memo/delete/id/${id}`)
+    },
 }
 
 export default memoApi;

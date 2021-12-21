@@ -53,9 +53,17 @@ function App() {
     }
 
     const handleDeleteBtnClick = (id) => {
-        alert('施工中🚀')
         console.log('handleDeleteBtnClick', id)
         setMemoList(memoList.filter(item => item.id !== id))
+        memoApi.deleteById(id)
+            .then(response => {
+                console.log('handleDeleteBtnClick response', response)
+                const success = response.data.success
+                console.log('handleDeleteBtnClick success', success)
+                if (success) {
+                    console.log('handleDeleteBtnClick success')
+                }
+            })
     }
 
     const handleEditBtnClick = (id) => {
