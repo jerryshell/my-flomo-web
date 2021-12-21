@@ -1,7 +1,7 @@
 import './App.css'
-import {useEffect, useState} from "react";
-import memoApi from "./api/memoApi";
-import MemoListItem from "./compoments/MemoListItem";
+import {useEffect, useState} from "react"
+import memoApi from "./api/memoApi"
+import MemoListItem from "./compoments/MemoListItem"
 
 function App() {
     const [memoList, setMemoList] = useState([])
@@ -67,9 +67,9 @@ function App() {
             })
     }
 
-    const handleEditBtnClick = (id) => {
-        alert('施工中🚀')
-        console.log('handleEditBtnClick', id)
+    const handleMemoUpdate = memo => {
+        console.log('handleMemoUpdate', memo)
+        setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
     }
 
     return (
@@ -82,7 +82,8 @@ function App() {
                     <MemoListItem
                         memo={memo}
                         handleDeleteBtnClick={handleDeleteBtnClick}
-                        handleEditBtnClick={handleEditBtnClick}
+                        fetchMemoList={fetchMemoList}
+                        handleMemoUpdate={handleMemoUpdate}
                         key={memo.id}
                     />
                 ))
