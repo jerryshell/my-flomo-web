@@ -1,11 +1,14 @@
 import './App.css'
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import memoApi from "./api/memoApi"
 import MemoListItem from "./compoments/MemoListItem"
+import uploadApi from "./api/uploadApi"
 
 function App() {
     const [memoList, setMemoList] = useState([])
     const [newMemo, setNewMemo] = useState('')
+    const [uploadFileList, setUploadFileList] = useState([])
+    const fileUploadInputRef = useRef()
 
     const fetchMemoList = () => {
         memoApi.list()
@@ -48,9 +51,23 @@ function App() {
             })
     }
 
+    const handleFileInputChange = e => {
+        const uploadFileList = e.target.files
+        setUploadFileList(uploadFileList)
+    }
+
     const handleImportBtnClick = () => {
-        alert('施工中🚀')
-        console.log('handleImportBtnClick')
+        const formData = new FormData()
+        for (let i = 0; i < uploadFileList.length; i++) {
+            formData.append(`uploadFileList[]`, uploadFileList[i])
+        }
+        setUploadFileList([])
+        fileUploadInputRef.current.value = ''
+        uploadApi.upload(formData)
+            .then(response => {
+                console.log('upload response', response)
+                fetchMemoList()
+            })
     }
 
     const handleDeleteBtnClick = (id) => {
@@ -75,8 +92,20 @@ function App() {
     return (
         <div>
             <textarea placeholder="开始记录你的想法..." value={newMemo} onChange={handleNewMemoTextareaChange}/>
-            <button onClick={handleImportBtnClick}>从 flomo 导入</button>
             <button onClick={handleSaveBtnClick}>保存</button>
+            <details>
+                <summary>从 flomo 导入</summary>
+                <p>请选择从 flomo 导出的 HTML 文件，可以一次性选择多个</p>
+                <input
+                    type="file"
+                    name="uploadFileList"
+                    accept="text/html"
+                    multiple="multiple"
+                    ref={fileUploadInputRef}
+                    onChange={handleFileInputChange}
+                />
+                <button onClick={handleImportBtnClick}>提交</button>
+            </details>
             {
                 memoList.map(memo => (
                     <MemoListItem
