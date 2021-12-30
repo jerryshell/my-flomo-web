@@ -6,11 +6,14 @@ import MemoCreatePlane from "./compoments/MemoCreatePlane"
 import MemoImportPlane from "./compoments/MemoImportPlane"
 import MemoList from "./compoments/MemoList"
 import Footer from "./compoments/Footer"
+import LoginPlane from "./compoments/LoginPlane";
+import Header from "./compoments/Header";
 
 function App() {
     const [memoList, setMemoList] = useState([])
     const [newMemo, setNewMemo] = useState('')
     const [uploadFileList, setUploadFileList] = useState([])
+    const [token, setToken] = useState(localStorage.getItem('token'))
     const fileUploadInputRef = useRef()
 
     const fetchMemoList = () => {
@@ -75,23 +78,42 @@ function App() {
         setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
     }
 
+    const handleLoginSuccess = (token) => {
+        setToken(token)
+        localStorage.setItem('token', token)
+    }
+
+    const handleLogoutBtnClick = () => {
+        setToken('')
+        localStorage.removeItem('token')
+    }
+
     return (
         <>
-            <MemoCreatePlane
-                newMemo={newMemo}
-                handleNewMemoTextareaChange={handleNewMemoTextareaChange}
-                handleSaveBtnClick={handleSaveBtnClick}
-            />
-            <MemoImportPlane
-                fileUploadInputRef={fileUploadInputRef}
-                handleFileInputChange={handleFileInputChange}
-                handleImportBtnClick={handleImportBtnClick}
-            />
-            <MemoList
-                memoList={memoList}
-                handleDeleteBtnClick={handleDeleteBtnClick}
-                handleMemoUpdate={handleMemoUpdate}
-            />
+            <Header/>
+            {
+                token ?
+                    <>
+                        <MemoCreatePlane
+                            newMemo={newMemo}
+                            handleNewMemoTextareaChange={handleNewMemoTextareaChange}
+                            handleSaveBtnClick={handleSaveBtnClick}
+                        />
+                        <button onClick={handleLogoutBtnClick} style={{color: '#9E3B37'}}>注销</button>
+                        <MemoImportPlane
+                            handleFileInputChange={handleFileInputChange}
+                            handleImportBtnClick={handleImportBtnClick}
+                            fileUploadInputRef={fileUploadInputRef}
+                        />
+                        <MemoList
+                            memoList={memoList}
+                            handleDeleteBtnClick={handleDeleteBtnClick}
+                            handleMemoUpdate={handleMemoUpdate}
+                        />
+                    </>
+                    :
+                    <LoginPlane handleLoginSuccess={handleLoginSuccess}/>
+            }
             <Footer/>
         </>
     )
