@@ -1,5 +1,5 @@
 import {useState} from "react"
-import memoApi from "../api/memoApi";
+import memoApi from "../api/memoApi"
 
 const MemoListItem = (props) => {
     const [editModeFlag, setEditModeFlag] = useState(false)
@@ -15,7 +15,6 @@ const MemoListItem = (props) => {
         setEditModeFlag(false)
         memoApi.update(memo)
             .then(response => {
-                console.log('handleUpdateBtnClick response', response)
                 const success = response.data.success
                 if (success) {
                     const memo = response.data.data

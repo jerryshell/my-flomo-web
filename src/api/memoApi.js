@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "./api"
 
 const memoApi = {
     list: () => {
@@ -15,4 +15,4 @@ const memoApi = {
     },
 }
 
-export default memoApi;
+export default memoApi

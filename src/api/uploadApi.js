@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "./api"
 
 const uploadApi = {
     upload: data => {
@@ -6,4 +6,4 @@ const uploadApi = {
     },
 }
 
-export default uploadApi;
+export default uploadApi
