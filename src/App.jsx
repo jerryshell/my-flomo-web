@@ -8,6 +8,7 @@ import MemoList from "./compoments/MemoList"
 import Footer from "./compoments/Footer"
 import LoginPlane from "./compoments/LoginPlane";
 import Header from "./compoments/Header";
+import PluginToken from "./compoments/PluginToken";
 
 function App() {
     const [memoList, setMemoList] = useState([])
@@ -105,6 +106,7 @@ function App() {
                             handleImportBtnClick={handleImportBtnClick}
                             fileUploadInputRef={fileUploadInputRef}
                         />
+                        <PluginToken/>
                         <MemoList
                             memoList={memoList}
                             handleDeleteBtnClick={handleDeleteBtnClick}
