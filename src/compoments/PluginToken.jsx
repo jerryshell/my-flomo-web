@@ -27,7 +27,7 @@ const PluginToken = (props) => {
     return (
         <details>
             <summary>插件令牌</summary>
-            <p>{pluginToken}</p>
+            <p>https://my-flomo-api.d8s.fun/plugin/createMemo/{pluginToken}</p>
             <button onClick={handleGeneratePluginTokenBtnClick}>重新生成</button>
         </details>
     )
