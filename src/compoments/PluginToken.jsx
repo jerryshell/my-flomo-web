@@ -29,8 +29,8 @@ const PluginToken = (props) => {
       <details>
         <summary>插件令牌</summary>
         {
-          pluginToken === "当前没有插件令牌，请重新生成"
-            ? <p>当前没有插件令牌，请重新生成</p>
+          pluginToken.length !== 36
+            ? <p>{ pluginToken }</p>
             : <p>{ api.defaults.baseURL }/plugin/createMemo/{ pluginToken }</p>
         }
         <button onClick={ handleGeneratePluginTokenBtnClick }>重新生成</button>
