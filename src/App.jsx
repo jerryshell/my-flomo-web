@@ -58,9 +58,9 @@ function App() {
 
     const handleImportBtnClick = () => {
         const formData = new FormData()
-        uploadFileList.forEach(uploadFile => {
-            formData.append('uploadFileList[]', uploadFile)
-        })
+        for (let i = 0; i < uploadFileList.length; i++) {
+            formData.append('uploadFileList[]', uploadFileList[i])
+        }
         setUploadFileList([])
         fileUploadInputRef.current.value = ''
         uploadApi.upload(formData)
