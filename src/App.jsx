@@ -31,7 +31,7 @@ function App() {
 
     useEffect(() => {
         fetchMemoList()
-    }, [])
+    }, [token])
 
     const handleNewMemoTextareaChange = (e) => {
         setNewMemo(e.target.value)
