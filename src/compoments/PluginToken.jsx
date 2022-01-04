@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import pluginApi from "../api/pluginApi";
 import api from "../api/api";
 
@@ -26,11 +26,15 @@ const PluginToken = (props) => {
     }
 
     return (
-        <details>
-            <summary>插件令牌</summary>
-            <p>{api.defaults.baseURL}/plugin/createMemo/{pluginToken}</p>
-            <button onClick={handleGeneratePluginTokenBtnClick}>重新生成</button>
-        </details>
+      <details>
+        <summary>插件令牌</summary>
+        {
+          pluginToken === "当前没有插件令牌，请重新生成"
+            ? <p>当前没有插件令牌，请重新生成</p>
+            : <p>{ api.defaults.baseURL }/plugin/createMemo/{ pluginToken }</p>
+        }
+        <button onClick={ handleGeneratePluginTokenBtnClick }>重新生成</button>
+      </details>
     )
 }
 
