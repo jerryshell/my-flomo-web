@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import pluginApi from "../api/pluginApi";
+import api from "../api/api";
 
 const PluginToken = (props) => {
     const [pluginToken, setPluginToken] = useState('test')
@@ -27,7 +28,7 @@ const PluginToken = (props) => {
     return (
         <details>
             <summary>插件令牌</summary>
-            <p>https://my-flomo-api.d8s.fun/plugin/createMemo/{pluginToken}</p>
+            <p>{api.defaults.baseURL}/plugin/createMemo/{pluginToken}</p>
             <button onClick={handleGeneratePluginTokenBtnClick}>重新生成</button>
         </details>
     )

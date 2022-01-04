@@ -1,8 +1,8 @@
 import axios from "axios"
 
 const api = axios.create({
-    // baseURL: "http://localhost:8060/",
-    baseURL: "https://my-flomo-api.d8s.fun/",
+    // baseURL: "http://localhost:8060",
+    baseURL: "https://my-flomo-api.d8s.fun",
 });
 
 api.interceptors.request.use(async (config) => {
