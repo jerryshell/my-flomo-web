@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import pluginApi from "../api/pluginApi";
 import api from "../api/api";
 
 const PluginToken = (props) => {
-    const [pluginToken, setPluginToken] = useState('test')
+    const [pluginToken, setPluginToken] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
 
     const fetchPluginToken = () => {
         pluginApi.getToken()
-            .then(res => {
-                console.log('res', res)
-                setPluginToken(res.data.data)
+            .then(response => {
+                const success = response.data.success
+                if (success) {
+                    setPluginToken(response.data.data)
+                } else {
+                    setPluginToken('')
+                    setErrorMessage(response.data.message)
+                }
             })
     }
 
@@ -19,22 +25,21 @@ const PluginToken = (props) => {
 
     const handleGeneratePluginTokenBtnClick = () => {
         pluginApi.createToken()
-            .then(res => {
-                console.log('res', res)
-                setPluginToken(res.data.data)
+            .then(response => {
+                setPluginToken(response.data.data)
             })
     }
 
     return (
-      <details>
-        <summary>插件令牌</summary>
-        {
-          pluginToken.length !== 36
-            ? <p>{ pluginToken }</p>
-            : <p>{ api.defaults.baseURL }/plugin/createMemo/{ pluginToken }</p>
-        }
-        <button onClick={ handleGeneratePluginTokenBtnClick }>重新生成</button>
-      </details>
+        <details>
+            <summary>插件令牌</summary>
+            {
+                pluginToken
+                    ? <p>{api.defaults.baseURL}/plugin/createMemo/{pluginToken}</p>
+                    : <p>{errorMessage}</p>
+            }
+            <button onClick={handleGeneratePluginTokenBtnClick}>重新生成</button>
+        </details>
     )
 }
 
