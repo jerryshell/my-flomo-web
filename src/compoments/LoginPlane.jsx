@@ -26,7 +26,8 @@ const LoginPlane = (props) => {
             })
     }
     return (
-        <>
+        <fieldset>
+            <legend>如果使用新的账号密码登录，会自动创建账号</legend>
             <input
                 type="text"
                 placeholder="账号"
@@ -40,7 +41,7 @@ const LoginPlane = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={handleLoginClick}>登录</button>
-        </>
+        </fieldset>
     )
 }
 
