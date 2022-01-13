@@ -34,7 +34,6 @@ const MemoListItem = (props) => {
                 {memo.createdAt}
             </summary>
             <p style={{whiteSpace: 'pre-line'}}>
-
                 {
                     editModeFlag
                         ? <textarea
@@ -43,7 +42,8 @@ const MemoListItem = (props) => {
                         />
                         : memo.content
                 }
-
+            </p>
+            <p>
                 {
                     editModeFlag
                         ? <>
