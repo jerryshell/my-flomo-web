@@ -3,11 +3,14 @@
 ## 功能清单
 
 * Flomo 数据导入
+* Flomo API 兼容
 * 邮件每日回顾
 * Memo 增删改查
 * 用户登录注册
 
 ## 体验 Demo
+
+**⚠️ 注意：推荐每个用户单独搭建自己的服务，体验 Demo 不保证数据安全性，所以请勿在体验 Demo 中使用真实用户名密码注册！请勿在体验 Demo 中录入敏感数据！**
 
 [https://my-flomo.pages.dev/](https://my-flomo.pages.dev/)
 
