@@ -70,7 +70,7 @@ const MemoListItem = (props) => {
 
                 <button
                     style={{color: '#9E3B37', float: 'right'}}
-                    onClick={() => props.handleDeleteBtnClick(memo.id)}
+                    onClick={() => props.handleMemoDeleteBtnClick(memo.id)}
                 >
                     删除
                 </button>

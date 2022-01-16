@@ -21,8 +21,8 @@ const LoginPlane = (props) => {
                     alert(response.data.message)
                     return
                 }
-                const token = response.data.data.token
-                props.handleLoginSuccess(token)
+                const data = response.data.data
+                props.handleLoginSuccess(data)
             })
     }
     return (

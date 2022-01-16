@@ -13,7 +13,7 @@ const MemoImportPlane = (props) => {
                 ref={props.fileUploadInputRef}
                 onChange={props.handleFileInputChange}
             />
-            <button onClick={props.handleImportBtnClick}>提交</button>
+            <button onClick={props.handleImportDataBtnClick}>提交</button>
         </details>
     )
 }

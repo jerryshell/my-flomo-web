@@ -10,12 +10,16 @@ import LoginPlane from "./compoments/LoginPlane";
 import Header from "./compoments/Header";
 import PluginToken from "./compoments/PluginToken";
 import UserUpdateEmailPlane from "./compoments/UserUpdateEmailPlane";
+import userApi from "./api/userApi";
 
 function App() {
     const [memoList, setMemoList] = useState([])
     const [newMemo, setNewMemo] = useState('')
     const [uploadFileList, setUploadFileList] = useState([])
+    const [username, setUsername] = useState(localStorage.getItem('username'))
+    const [email, setEmail] = useState(localStorage.getItem('email'))
     const [token, setToken] = useState(localStorage.getItem('token'))
+    const [expiresAt, setExpiresAt] = useState(localStorage.getItem('expiresAt'))
     const fileUploadInputRef = useRef()
 
     const fetchMemoList = () => {
@@ -56,7 +60,7 @@ function App() {
         setUploadFileList(uploadFileList)
     }
 
-    const handleImportBtnClick = () => {
+    const handleImportDataBtnClick = () => {
         const formData = new FormData()
         for (let i = 0; i < uploadFileList.length; i++) {
             formData.append('uploadFileList[]', uploadFileList[i])
@@ -69,7 +73,7 @@ function App() {
             })
     }
 
-    const handleDeleteBtnClick = (id) => {
+    const handleMemoDeleteBtnClick = (id) => {
         setMemoList(memoList.filter(item => item.id !== id))
         memoApi.deleteById(id)
             .then(() => {
@@ -80,14 +84,44 @@ function App() {
         setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
     }
 
-    const handleLoginSuccess = (token) => {
+    const handleLoginSuccess = ({username, email, token, expiresAt}) => {
+        setUsername(username)
+        setEmail(email)
         setToken(token)
+        setExpiresAt(expiresAt)
+        localStorage.setItem('username', username)
+        localStorage.setItem('email', email)
         localStorage.setItem('token', token)
+        localStorage.setItem('expiresAt', expiresAt)
     }
 
     const handleLogoutBtnClick = () => {
+        setUsername('')
+        setEmail('')
         setToken('')
+        setExpiresAt('')
+        localStorage.removeItem('username')
+        localStorage.removeItem('email')
         localStorage.removeItem('token')
+        localStorage.removeItem('expiresAt')
+    }
+
+    const handleUpdateEmailBtnClick = (newEmail) => {
+        const postData = {
+            email: newEmail
+        }
+        console.log('updateEmail postData', postData)
+        userApi.updateEmail(postData)
+            .then(response => {
+                console.log('updateEmail response', response)
+                const message = response.data.message
+                alert(message)
+                const success = response.data.success
+                if (success) {
+                    setEmail(newEmail)
+                    localStorage.setItem('email', newEmail)
+                }
+            })
     }
 
     return (
@@ -104,14 +138,18 @@ function App() {
                         <button onClick={handleLogoutBtnClick} style={{color: '#9E3B37'}}>注销</button>
                         <MemoImportPlane
                             handleFileInputChange={handleFileInputChange}
-                            handleImportBtnClick={handleImportBtnClick}
+                            handleImportDataBtnClick={handleImportDataBtnClick}
                             fileUploadInputRef={fileUploadInputRef}
                         />
                         <PluginToken/>
-                        <UserUpdateEmailPlane/>
+                        <UserUpdateEmailPlane
+                            username={username}
+                            email={email}
+                            handleUpdateEmailBtnClick={handleUpdateEmailBtnClick}
+                        />
                         <MemoList
                             memoList={memoList}
-                            handleDeleteBtnClick={handleDeleteBtnClick}
+                            handleMemoDeleteBtnClick={handleMemoDeleteBtnClick}
                             handleMemoUpdate={handleMemoUpdate}
                         />
                     </>
