@@ -11,16 +11,17 @@ import Header from "./compoments/Header";
 import PluginToken from "./compoments/PluginToken";
 import UserUpdateEmailPlane from "./compoments/UserUpdateEmailPlane";
 import userApi from "./api/userApi";
+import Memo from "./interfaces/Memo";
 
 function App() {
-    const [memoList, setMemoList] = useState([])
+    const [memoList, setMemoList] = useState<Memo[]>([])
     const [newMemo, setNewMemo] = useState('')
-    const [uploadFileList, setUploadFileList] = useState([])
-    const [username, setUsername] = useState(localStorage.getItem('username'))
-    const [email, setEmail] = useState(localStorage.getItem('email'))
-    const [token, setToken] = useState(localStorage.getItem('token'))
-    const [expiresAt, setExpiresAt] = useState(localStorage.getItem('expiresAt'))
-    const fileUploadInputRef = useRef()
+    const [uploadFileList, setUploadFileList] = useState<FileList | null>(null)
+    const [username, setUsername] = useState(localStorage.getItem('username') || '')
+    const [email, setEmail] = useState(localStorage.getItem('email') || '')
+    const [token, setToken] = useState(localStorage.getItem('token') || '')
+    const [expiresAt, setExpiresAt] = useState(localStorage.getItem('expiresAt') || '')
+    const fileUploadInputRef = useRef<HTMLInputElement>(null)
 
     const fetchMemoList = () => {
         memoApi.list()
@@ -37,8 +38,8 @@ function App() {
         fetchMemoList()
     }, [token])
 
-    const handleNewMemoTextareaChange = (e) => {
-        setNewMemo(e.target.value)
+    const handleNewMemoTextareaChange = (content: string) => {
+        setNewMemo(content)
     }
 
     const handleSaveBtnClick = () => {
@@ -55,44 +56,51 @@ function App() {
             })
     }
 
-    const handleFileInputChange = e => {
-        const uploadFileList = e.target.files
-        setUploadFileList(uploadFileList)
+    const handleFileInputChange = (fileList: FileList | null) => {
+        setUploadFileList(fileList)
     }
 
     const handleImportDataBtnClick = () => {
+        if (uploadFileList === null) {
+            return
+        }
         const formData = new FormData()
         for (let i = 0; i < uploadFileList.length; i++) {
             formData.append('uploadFileList[]', uploadFileList[i])
         }
-        setUploadFileList([])
-        fileUploadInputRef.current.value = ''
+        setUploadFileList(null)
+        fileUploadInputRef.current?.setAttribute('value', '')
         uploadApi.upload(formData)
             .then(() => {
                 fetchMemoList()
             })
     }
 
-    const handleMemoDeleteBtnClick = (id) => {
+    const handleMemoDeleteBtnClick = (id: string) => {
         setMemoList(memoList.filter(item => item.id !== id))
         memoApi.deleteById(id)
             .then(() => {
             })
     }
 
-    const handleMemoUpdate = memo => {
+    const handleMemoUpdate = (memo: Memo) => {
         setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
     }
 
-    const handleLoginSuccess = ({username, email, token, expiresAt}) => {
-        setUsername(username)
-        setEmail(email)
-        setToken(token)
+    const handleLoginSuccess = (data: {
+        username: string,
+        email: string,
+        token: string,
+        expiresAt: string,
+    }) => {
+        setUsername(data.username)
+        setEmail(data.email)
+        setToken(data.token)
         setExpiresAt(expiresAt)
-        localStorage.setItem('username', username)
-        localStorage.setItem('email', email)
-        localStorage.setItem('token', token)
-        localStorage.setItem('expiresAt', expiresAt)
+        localStorage.setItem('username', data.username)
+        localStorage.setItem('email', data.email)
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('expiresAt', data.expiresAt)
     }
 
     const handleLogoutBtnClick = () => {
@@ -106,7 +114,7 @@ function App() {
         localStorage.removeItem('expiresAt')
     }
 
-    const handleUpdateEmailBtnClick = (newEmail) => {
+    const handleUpdateEmailBtnClick = (newEmail: string) => {
         const postData = {
             email: newEmail
         }

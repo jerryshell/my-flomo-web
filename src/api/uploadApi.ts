@@ -1,7 +1,7 @@
 import api from "./api"
 
 const uploadApi = {
-    upload: data => {
+    upload: (data: FormData) => {
         return api.post('/upload', data)
     },
 }

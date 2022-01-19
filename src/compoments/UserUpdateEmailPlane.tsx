@@ -1,6 +1,10 @@
-import {useState} from "react";
+import {useState} from "react"
 
-const UserUpdateEmailPlane = (props) => {
+const UserUpdateEmailPlane = (props: {
+    handleUpdateEmailBtnClick: (email: string) => void,
+    username: string,
+    email: string,
+}) => {
     const [email, setEmail] = useState('')
     const handleUpdateEmailBtnClick = () => {
         props.handleUpdateEmailBtnClick(email)

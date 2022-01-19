@@ -1,11 +1,16 @@
 import {useState} from "react"
 import memoApi from "../api/memoApi"
+import Memo from "../interfaces/Memo"
 
-const MemoListItem = (props) => {
+const MemoListItem = (props: {
+    memo: Memo,
+    handleMemoUpdate: (memo: Memo) => void,
+    handleMemoDeleteBtnClick: (memoId: string) => void,
+}) => {
     const [editModeFlag, setEditModeFlag] = useState(false)
     const [memo, setMemo] = useState({...props.memo})
 
-    const handleTextareaChange = (e) => {
+    const handleTextareaChange = (e: { target: { value: string } }) => {
         const content = e.target.value
         const newMemo = {...memo, content}
         setMemo(newMemo)

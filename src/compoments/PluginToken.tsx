@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
-import pluginApi from "../api/pluginApi";
-import api from "../api/api";
+import {useEffect, useState} from "react"
+import pluginApi from "../api/pluginApi"
+import api from "../api/api"
 
-const PluginToken = (props) => {
+const PluginToken = () => {
     const [pluginToken, setPluginToken] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 

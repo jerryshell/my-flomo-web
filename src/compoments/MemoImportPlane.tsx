@@ -1,4 +1,10 @@
-const MemoImportPlane = (props) => {
+import {LegacyRef, MouseEventHandler} from "react"
+
+const MemoImportPlane = (props: {
+    fileUploadInputRef: LegacyRef<HTMLInputElement>,
+    handleFileInputChange: (fileList: FileList | null) => void,
+    handleImportDataBtnClick: MouseEventHandler<HTMLButtonElement>,
+}) => {
     return (
         <details>
             <summary>从 Flomo 导入</summary>
@@ -9,9 +15,11 @@ const MemoImportPlane = (props) => {
                 type="file"
                 name="uploadFileList"
                 accept="text/html"
-                multiple="multiple"
+                multiple
                 ref={props.fileUploadInputRef}
-                onChange={props.handleFileInputChange}
+                onChange={e => {
+                    props.handleFileInputChange(e.target.files)
+                }}
             />
             <button onClick={props.handleImportDataBtnClick}>提交</button>
         </details>

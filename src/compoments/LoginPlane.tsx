@@ -1,7 +1,9 @@
 import {useState} from "react";
 import authApi from "../api/authApi";
 
-const LoginPlane = (props) => {
+const LoginPlane = (props: {
+    handleLoginSuccess: (data: any) => void,
+}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLoginClick = () => {
