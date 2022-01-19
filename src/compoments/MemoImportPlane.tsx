@@ -1,9 +1,9 @@
-import {LegacyRef, MouseEventHandler} from "react"
+import {RefObject} from "react"
 
 const MemoImportPlane = (props: {
-    fileUploadInputRef: LegacyRef<HTMLInputElement>,
+    fileUploadInputRef: RefObject<HTMLInputElement>,
     handleFileInputChange: (fileList: FileList | null) => void,
-    handleImportDataBtnClick: MouseEventHandler<HTMLButtonElement>,
+    handleImportDataBtnClick: () => void,
 }) => {
     return (
         <details>
