@@ -1,9 +1,7 @@
-import {MouseEventHandler} from "react"
-
 const MemoCreatePlane = (props: {
     newMemo: string,
     handleNewMemoTextareaChange: (content: string) => void,
-    handleSaveBtnClick: MouseEventHandler<HTMLButtonElement>,
+    handleSaveBtnClick: () => void,
 }) => {
     return (
         <>
