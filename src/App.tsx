@@ -12,6 +12,7 @@ import PluginToken from "./compoments/PluginToken";
 import UserUpdateEmailPlane from "./compoments/UserUpdateEmailPlane";
 import userApi from "./api/userApi";
 import Memo from "./interfaces/Memo";
+import LoginResponse from "./interfaces/LoginResponse";
 
 function App() {
     const [memoList, setMemoList] = useState<Memo[]>([])
@@ -87,20 +88,15 @@ function App() {
         setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
     }
 
-    const handleLoginSuccess = (data: {
-        username: string,
-        email: string,
-        token: string,
-        expiresAt: string,
-    }) => {
-        setUsername(data.username)
-        setEmail(data.email)
-        setToken(data.token)
+    const handleLoginSuccess = (loginResponse: LoginResponse) => {
+        setUsername(loginResponse.username)
+        setEmail(loginResponse.email)
+        setToken(loginResponse.token)
         setExpiresAt(expiresAt)
-        localStorage.setItem('username', data.username)
-        localStorage.setItem('email', data.email)
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('expiresAt', data.expiresAt)
+        localStorage.setItem('username', loginResponse.username)
+        localStorage.setItem('email', loginResponse.email)
+        localStorage.setItem('token', loginResponse.token)
+        localStorage.setItem('expiresAt', loginResponse.expiresAt)
     }
 
     const handleLogoutBtnClick = () => {

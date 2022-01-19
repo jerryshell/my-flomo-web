@@ -1,11 +1,13 @@
 import {useState} from "react";
 import authApi from "../api/authApi";
+import LoginResponse from "../interfaces/LoginResponse";
 
 const LoginPlane = (props: {
-    handleLoginSuccess: (data: any) => void,
+    handleLoginSuccess: (loginResponse: LoginResponse) => void,
 }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     const handleLoginClick = () => {
         if (username.length <= 0 || password.length <= 0) {
             alert('用户名和密码不能为空');
@@ -13,7 +15,7 @@ const LoginPlane = (props: {
         }
         const postData = {
             username,
-            password
+            password,
         }
         authApi.login(postData)
             .then(response => {
@@ -27,6 +29,7 @@ const LoginPlane = (props: {
                 props.handleLoginSuccess(data)
             })
     }
+
     return (
         <fieldset>
             <legend>如果使用新的账号密码登录，会自动创建账号</legend>
