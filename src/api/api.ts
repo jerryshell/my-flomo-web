@@ -6,15 +6,12 @@ const api = axios.create({
 })
 
 api.interceptors.request.use(async (config) => {
+    if (!config.headers) {
+        config.headers = {}
+    }
     const token = localStorage.getItem('token')
     if (token) {
-        return {
-            ...config,
-            headers: {
-                ...config.headers,
-                token,
-            }
-        }
+        config.headers.token = token
     }
     return config
 })
@@ -29,7 +26,6 @@ api.interceptors.response.use(async (response) => {
         window.location.href = '/'
         return Promise.reject(response)
     }
-
     return response
 })
 
