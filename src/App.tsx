@@ -13,6 +13,7 @@ import UserUpdateEmailPlane from "./compoments/UserUpdateEmailPlane";
 import userApi from "./api/userApi";
 import Memo from "./interfaces/Memo";
 import LoginResponse from "./interfaces/LoginResponse";
+import deleteMyAccountApi from "./api/deleteMyAccountApi";
 
 function App() {
     const [memoList, setMemoList] = useState<Memo[]>([])
@@ -128,6 +129,17 @@ function App() {
             })
     }
 
+    const deleteMyAccount = () => {
+        deleteMyAccountApi.deleteMyAccount()
+            .then(response => {
+                const success = response.data.success
+                if (success) {
+                    alert(response.data.message)
+                    handleLogoutBtnClick()
+                }
+            })
+    }
+
     return (
         <>
             <Header/>
@@ -145,6 +157,12 @@ function App() {
                             handleImportDataBtnClick={handleImportDataBtnClick}
                             fileUploadInputRef={fileUploadInputRef}
                         />
+
+                        <details>
+                            <summary>️⚠️ 危险区 ⚠️</summary>
+                            <button onClick={deleteMyAccount}>⚠️ 账号注销，永久抹除数据，无法恢复，点击立刻生效 ⚠️</button>
+                        </details>
+
                         <PluginToken/>
                         <UserUpdateEmailPlane
                             username={username}
