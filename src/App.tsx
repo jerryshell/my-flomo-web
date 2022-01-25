@@ -15,6 +15,7 @@ import Memo from "./interfaces/Memo";
 import LoginResponse from "./interfaces/LoginResponse";
 import deleteMyAccountApi from "./api/deleteMyAccountApi";
 import api from "./api/api";
+import csvApi from "./api/csvApi";
 
 function App() {
     const [memoList, setMemoList] = useState<Memo[]>([])
@@ -25,6 +26,7 @@ function App() {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
     const [expiresAt, setExpiresAt] = useState(localStorage.getItem('expiresAt') || '')
     const fileUploadInputRef = useRef<HTMLInputElement>(null)
+    const [csvFile, setCsvFile] = useState<File | null>(null)
 
     const fetchMemoList = () => {
         memoApi.list()
@@ -63,6 +65,14 @@ function App() {
         setUploadFileList(fileList)
     }
 
+    const handleCsvFileInputChange = (fileList: FileList | null) => {
+        if (fileList && fileList.length > 0) {
+            setCsvFile(fileList[0])
+        } else {
+            setCsvFile(null)
+        }
+    }
+
     const handleImportDataBtnClick = () => {
         if (uploadFileList === null) {
             return
@@ -76,6 +86,27 @@ function App() {
         uploadApi.upload(formData)
             .then(() => {
                 fetchMemoList()
+            })
+    }
+
+    const handleCsvImportBtnClick = () => {
+        if (csvFile === null) {
+            return
+        }
+        const formData = new FormData()
+        formData.append('csvFile', csvFile)
+        setCsvFile(null)
+        csvApi.csvImport(formData)
+            .then(response => {
+                const success = response.data.success
+                if (success) {
+                    fetchMemoList()
+                } else {
+                    alert(response.data.message)
+                }
+            })
+            .catch(e => {
+                console.log(e)
             })
     }
 
@@ -169,6 +200,19 @@ function App() {
                         <details>
                             <summary>CSV 导出</summary>
                             <button onClick={handleCsvExportBtnClick}>CSV 导出</button>
+                        </details>
+
+                        <details>
+                            <summary>CSV 导入</summary>
+                            <input
+                                type="file"
+                                name="file"
+                                accept="text/csv"
+                                onChange={e => {
+                                    handleCsvFileInputChange(e.target.files)
+                                }}
+                            />
+                            <button onClick={handleCsvImportBtnClick}>提交</button>
                         </details>
 
                         <details>
