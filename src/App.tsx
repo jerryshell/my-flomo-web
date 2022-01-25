@@ -14,6 +14,7 @@ import userApi from "./api/userApi";
 import Memo from "./interfaces/Memo";
 import LoginResponse from "./interfaces/LoginResponse";
 import deleteMyAccountApi from "./api/deleteMyAccountApi";
+import api from "./api/api";
 
 function App() {
     const [memoList, setMemoList] = useState<Memo[]>([])
@@ -140,6 +141,11 @@ function App() {
             })
     }
 
+    const handleCsvExportBtnClick = () => {
+        const token = localStorage.getItem('token')
+        window.open(`${api.defaults.baseURL}/csvExport/token/${token}`)
+    }
+
     return (
         <>
             <Header/>
@@ -151,7 +157,9 @@ function App() {
                             handleNewMemoTextareaChange={handleNewMemoTextareaChange}
                             handleSaveBtnClick={handleSaveBtnClick}
                         />
+
                         <button onClick={handleLogoutBtnClick} style={{color: '#9E3B37'}}>注销</button>
+
                         <MemoImportPlane
                             handleFileInputChange={handleFileInputChange}
                             handleImportDataBtnClick={handleImportDataBtnClick}
@@ -159,16 +167,23 @@ function App() {
                         />
 
                         <details>
+                            <summary>CSV 导出</summary>
+                            <button onClick={handleCsvExportBtnClick}>CSV 导出</button>
+                        </details>
+
+                        <details>
                             <summary>️⚠️ 危险区 ⚠️</summary>
                             <button onClick={deleteMyAccount}>⚠️ 账号注销，永久抹除数据，无法恢复，点击立刻生效 ⚠️</button>
                         </details>
 
                         <PluginToken/>
+
                         <UserUpdateEmailPlane
                             username={username}
                             email={email}
                             handleUpdateEmailBtnClick={handleUpdateEmailBtnClick}
                         />
+
                         <MemoList
                             memoList={memoList}
                             handleMemoDeleteBtnClick={handleMemoDeleteBtnClick}
