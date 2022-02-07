@@ -16,6 +16,9 @@ import LoginResponse from "./interfaces/LoginResponse";
 import deleteMyAccountApi from "./api/deleteMyAccountApi";
 import api from "./api/api";
 import csvApi from "./api/csvApi";
+import CsvExport from "./compoments/CsvExport";
+import CsvImport from "./compoments/CsvImport";
+import DangerousArea from "./compoments/DangerousArea";
 
 function App() {
     const [memoList, setMemoList] = useState<Memo[]>([])
@@ -197,28 +200,14 @@ function App() {
                             fileUploadInputRef={fileUploadInputRef}
                         />
 
-                        <details>
-                            <summary>CSV 导出</summary>
-                            <button onClick={handleCsvExportBtnClick}>CSV 导出</button>
-                        </details>
+                        <CsvExport handleCsvExportBtnClick={handleCsvExportBtnClick}/>
 
-                        <details>
-                            <summary>CSV 导入</summary>
-                            <input
-                                type="file"
-                                name="file"
-                                accept="text/csv"
-                                onChange={e => {
-                                    handleCsvFileInputChange(e.target.files)
-                                }}
-                            />
-                            <button onClick={handleCsvImportBtnClick}>提交</button>
-                        </details>
+                        <CsvImport
+                            handleCsvFileInputChange={handleCsvFileInputChange}
+                            handleCsvImportBtnClick={handleCsvImportBtnClick}
+                        />
 
-                        <details>
-                            <summary>️⚠️ 危险区 ⚠️</summary>
-                            <button onClick={deleteMyAccount}>⚠️ 账号注销，永久抹除数据，无法恢复，点击立刻生效 ⚠️</button>
-                        </details>
+                        <DangerousArea deleteMyAccount={deleteMyAccount}/>
 
                         <PluginToken/>
 
