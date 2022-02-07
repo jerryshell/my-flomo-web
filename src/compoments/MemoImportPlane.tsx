@@ -1,4 +1,4 @@
-import {RefObject} from "react"
+import React, {RefObject} from "react"
 
 const MemoImportPlane = (props: {
     fileUploadInputRef: RefObject<HTMLInputElement>,

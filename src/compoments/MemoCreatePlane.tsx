@@ -1,3 +1,5 @@
+import React from "react"
+
 const MemoCreatePlane = (props: {
     newMemo: string,
     handleNewMemoTextareaChange: (content: string) => void,
