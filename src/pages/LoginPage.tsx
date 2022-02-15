@@ -4,7 +4,7 @@ import authApi from "../api/authApi";
 
 import LoginResponse from "../interfaces/LoginResponse";
 
-const LoginPlane = (props: {
+const LoginPage = (props: {
     handleLoginSuccess: (loginResponse: LoginResponse) => void,
 }) => {
     const [username, setUsername] = useState('');
@@ -52,4 +52,4 @@ const LoginPlane = (props: {
     )
 }
 
-export default LoginPlane
+export default LoginPage
