@@ -164,7 +164,7 @@ const HomePage = (props: {
                 handleSaveBtnClick={handleSaveBtnClick}
             />
 
-            <button onClick={handleLogoutBtnClick} style={{color: '#9E3B37'}}>注销</button>
+            <button onClick={handleLogoutBtnClick} style={{color: '#9E3B37'}}>登出</button>
 
             <MemoImportPlane
                 handleFileInputChange={handleFileInputChange}

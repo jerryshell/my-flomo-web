@@ -34,7 +34,7 @@ const LoginPage = (props: {
 
     return (
         <fieldset>
-            <legend>如果使用新的账号密码登录，会自动创建账号</legend>
+            <legend>不存在的账号将自动注册</legend>
             <input
                 type="text"
                 placeholder="账号"
