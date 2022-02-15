@@ -1,33 +1,33 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 
-import MemoCreatePlane from "../compoments/MemoCreatePlane";
-import MemoImportPlane from "../compoments/MemoImportPlane";
-import CsvExport from "../compoments/CsvExport";
-import CsvImport from "../compoments/CsvImport";
-import DangerousArea from "../compoments/DangerousArea";
-import PluginToken from "../compoments/PluginToken";
-import UserUpdateEmailPlane from "../compoments/UserUpdateEmailPlane";
-import MemoList from "../compoments/MemoList";
+import MemoCreatePlane from "../compoments/MemoCreatePlane"
+import MemoImportPlane from "../compoments/MemoImportPlane"
+import CsvExport from "../compoments/CsvExport"
+import CsvImport from "../compoments/CsvImport"
+import DangerousArea from "../compoments/DangerousArea"
+import PluginToken from "../compoments/PluginToken"
+import UserUpdateEmailPlane from "../compoments/UserUpdateEmailPlane"
+import MemoList from "../compoments/MemoList"
 
-import Memo from "../interfaces/Memo";
+import Memo from "../interfaces/Memo"
 
-import memoApi from "../api/memoApi";
-import uploadApi from "../api/uploadApi";
-import csvApi from "../api/csvApi";
-import userApi from "../api/userApi";
-import deleteMyAccountApi from "../api/deleteMyAccountApi";
-import api from "../api/api";
+import memoApi from "../api/memoApi"
+import uploadApi from "../api/uploadApi"
+import csvApi from "../api/csvApi"
+import userApi from "../api/userApi"
+import deleteMyAccountApi from "../api/deleteMyAccountApi"
+import api from "../api/api"
 
-const IndexPage = (props: {
-    memoList: Memo[];
-    username: string;
-    email: string;
-    token: string;
-    setMemoList(memoList: Memo[]): void;
-    setUsername(username: string): void;
-    setEmail(email: string): void;
-    setToken(token: string): void;
-    fetchMemoList(): void;
+const HomePage = (props: {
+    memoList: Memo[]
+    username: string
+    email: string
+    token: string
+    setMemoList(memoList: Memo[]): void
+    setUsername(username: string): void
+    setEmail(email: string): void
+    setToken(token: string): void
+    fetchMemoList(): void
 }) => {
     const [newMemo, setNewMemo] = useState('')
     const [uploadFileList, setUploadFileList] = useState<FileList | null>(null)
@@ -195,7 +195,7 @@ const IndexPage = (props: {
                 handleMemoUpdate={handleMemoUpdate}
             />
         </>
-    );
+    )
 }
 
-export default IndexPage;
+export default HomePage
