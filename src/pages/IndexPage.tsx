@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 import MemoCreatePlane from "../compoments/MemoCreatePlane";
 import MemoImportPlane from "../compoments/MemoImportPlane";
@@ -27,26 +27,12 @@ const IndexPage = (props: {
     setUsername(username: string): void;
     setEmail(email: string): void;
     setToken(token: string): void;
+    fetchMemoList(): void;
 }) => {
     const [newMemo, setNewMemo] = useState('')
     const [uploadFileList, setUploadFileList] = useState<FileList | null>(null)
     const fileUploadInputRef = useRef<HTMLInputElement>(null)
     const [csvFile, setCsvFile] = useState<File | null>(null)
-
-    const fetchMemoList = () => {
-        memoApi.list()
-            .then(response => {
-                const success = response.data.success
-                if (success) {
-                    const memoList = response.data.data
-                    props.setMemoList(memoList)
-                }
-            })
-    }
-
-    useEffect(() => {
-        fetchMemoList()
-    }, [props.token])
 
     const handleNewMemoTextareaChange = (content: string) => {
         setNewMemo(content)
@@ -61,7 +47,7 @@ const IndexPage = (props: {
             .then(response => {
                 const success = response.data.success
                 if (success) {
-                    fetchMemoList()
+                    props.fetchMemoList()
                 }
             })
     }
@@ -90,7 +76,7 @@ const IndexPage = (props: {
         fileUploadInputRef.current?.setAttribute('value', '')
         uploadApi.upload(formData)
             .then(() => {
-                fetchMemoList()
+                props.fetchMemoList()
             })
     }
 
@@ -105,7 +91,7 @@ const IndexPage = (props: {
             .then(response => {
                 const success = response.data.success
                 if (success) {
-                    fetchMemoList()
+                    props.fetchMemoList()
                 } else {
                     alert(response.data.message)
                 }

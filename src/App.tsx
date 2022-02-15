@@ -56,6 +56,7 @@ function App() {
                         setUsername={setUsername}
                         setEmail={setEmail}
                         setToken={setToken}
+                        fetchMemoList={fetchMemoList}
                     />
                     :
                     <LoginPage handleLoginSuccess={handleLoginSuccess}/>
