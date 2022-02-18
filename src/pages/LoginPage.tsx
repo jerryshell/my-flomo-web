@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {KeyboardEvent, useState} from "react"
 
 import authApi from "../api/authApi";
 
@@ -32,8 +32,14 @@ const LoginPage = (props: {
             })
     }
 
+    const handleKeyUp = (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            handleLoginClick()
+        }
+    }
+
     return (
-        <fieldset>
+        <fieldset onKeyUp={handleKeyUp}>
             <legend>不存在的账号将自动注册</legend>
             <input
                 type="text"
