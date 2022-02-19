@@ -1,20 +1,16 @@
-import Memo from "../interfaces/Memo"
+import MemoListItem from './MemoListItem'
+import {useRecoilState} from 'recoil'
+import {atoms} from '../atoms/atoms'
 
-import MemoListItem from "./MemoListItem"
+const MemoList = () => {
+    const [memoList, setMemoList] = useRecoilState(atoms.memoList)
 
-const MemoList = (props: {
-    memoList: Memo[],
-    handleMemoUpdate: (memo: Memo) => void,
-    handleMemoDeleteBtnClick: (memoId: string) => void,
-}) => {
     return (
         <>
             {
-                props.memoList.map(memo => (
+                memoList.map(memo => (
                     <MemoListItem
                         memo={memo}
-                        handleMemoUpdate={props.handleMemoUpdate}
-                        handleMemoDeleteBtnClick={props.handleMemoDeleteBtnClick}
                         key={memo.id}
                     />
                 ))

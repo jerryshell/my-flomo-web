@@ -1,10 +1,16 @@
-import React from "react"
+import React from 'react'
+import api from '../api/api'
 
-const CsvExport = (props: { handleCsvExportBtnClick: () => void }) => {
+const CsvExport = () => {
+    const handleCsvExportBtnClick = () => {
+        const token = localStorage.getItem('token')
+        window.open(`${api.defaults.baseURL}/csvExport/token/${token}`)
+    }
+
     return (
         <details>
             <summary>CSV 导出</summary>
-            <button onClick={props.handleCsvExportBtnClick}>CSV 导出</button>
+            <button onClick={handleCsvExportBtnClick}>CSV 导出</button>
         </details>
     );
 }

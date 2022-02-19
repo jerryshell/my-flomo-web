@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState} from 'react'
 
-import pluginApi from "../api/pluginApi"
-import api from "../api/api"
+import pluginApi from '../api/pluginApi'
+import api from '../api/api'
 
 const PluginToken = () => {
     const [pluginToken, setPluginToken] = useState('')

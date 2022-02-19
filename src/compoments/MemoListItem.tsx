@@ -1,16 +1,15 @@
-import React, {useState} from "react"
-
-import memoApi from "../api/memoApi"
-
-import Memo from "../interfaces/Memo"
+import React, {useState} from 'react'
+import memoApi from '../api/memoApi'
+import Memo from '../interfaces/Memo'
+import {useRecoilState} from 'recoil'
+import {atoms} from '../atoms/atoms'
 
 const MemoListItem = (props: {
     memo: Memo,
-    handleMemoUpdate: (memo: Memo) => void,
-    handleMemoDeleteBtnClick: (memoId: string) => void,
 }) => {
     const [editModeFlag, setEditModeFlag] = useState(false)
     const [memo, setMemo] = useState({...props.memo})
+    const [memoList, setMemoList] = useRecoilState(atoms.memoList)
 
     const handleTextareaChange = (e: { target: { value: string } }) => {
         const content = e.target.value
@@ -25,8 +24,16 @@ const MemoListItem = (props: {
                 const success = response.data.success
                 if (success) {
                     const memo = response.data.data
-                    props.handleMemoUpdate(memo)
+                    setMemoList(memoList.map(item => item.id === memo.id ? memo : item))
                 }
+            })
+    }
+
+    const handleMemoDeleteBtnClick = (id: string) => {
+        setMemoList(memoList.filter(item => item.id !== id))
+        memoApi.deleteById(id)
+            .then(response => {
+                console.log('delete memo response', response)
             })
     }
 
@@ -77,7 +84,7 @@ const MemoListItem = (props: {
 
                 <button
                     style={{color: '#9E3B37', float: 'right'}}
-                    onClick={() => props.handleMemoDeleteBtnClick(memo.id)}
+                    onClick={() => handleMemoDeleteBtnClick(memo.id)}
                 >
                     删除
                 </button>
