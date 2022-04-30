@@ -3,6 +3,7 @@ import memoApi from '../api/memoApi'
 import Memo from '../interfaces/Memo'
 import { useRecoilState } from 'recoil'
 import { atoms } from '../atoms/atoms'
+import dayjs from 'dayjs'
 
 const MemoListItem = (props: {
     memo: Memo,
@@ -48,7 +49,7 @@ const MemoListItem = (props: {
             key={ memo.id }
         >
             <summary>
-                { memo.createdAt }
+                { dayjs(memo.createdAt).format('YYYY-MM-DD HH:mm:ss') }
             </summary>
             <p style={ { whiteSpace: 'pre-line' } }>
                 {
