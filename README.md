@@ -7,13 +7,13 @@
 * 邮件每日回顾
 * 注销账号，永久抹除数据
 * CSV 数据导入导出
-* 服务端支持树莓派部署
+* 服务端支持 ARMv7 部署
 
 ## 体验 Demo
 
 **⚠️ 注意：推荐每个用户单独搭建自己的服务，体验 Demo 不保证数据安全性，所以请勿在体验 Demo 中使用真实用户名密码注册！请勿在体验 Demo 中录入敏感数据！**
 
-[https://my-flomo.pages.dev/](https://my-flomo.pages.dev/)
+[https://my-flomo.pages.dev](https://my-flomo.pages.dev)
 
 # 相关项目
 
@@ -22,9 +22,9 @@
 
 # 感谢
 
-* [Flomo](https://flomoapp.com/) （灵感来源）
-* [Water.css](https://watercss.kognise.dev/) （让后端工程师脱离 CSS 苦海）
+* [Flomo](https://flomoapp.com) （灵感来源）
+* [Water.css](https://watercss.kognise.dev) （让后端工程师脱离 CSS 苦海）
 
 ## 开源许可证
 
-[GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0/)
+[GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0)
