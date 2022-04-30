@@ -16,7 +16,7 @@ const memoApi = {
         return api.post('/memo/update', data)
     },
     deleteById: (id: string) => {
-        return api.post(`/memo/delete/id/${id}`)
+        return api.post(`/memo/delete/id/${ id }`)
     },
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import memoApi from '../api/memoApi'
 
 const MemoCreate = (props: {
@@ -24,11 +24,11 @@ const MemoCreate = (props: {
     return (
         <>
             <textarea
-                placeholder='开始记录你的想法...'
-                value={newMemo}
-                onChange={(e) => setNewMemo(e.target.value)}
+                placeholder="开始记录你的想法..."
+                value={ newMemo }
+                onChange={ (e) => setNewMemo(e.target.value) }
             />
-            <button onClick={handleSaveBtnClick}>保存</button>
+            <button onClick={ handleSaveBtnClick }>保存</button>
         </>
     )
 }

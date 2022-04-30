@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import csvApi from '../api/csvApi'
 
 const CsvImport = (props: {
@@ -43,19 +43,19 @@ const CsvImport = (props: {
         <details>
             <summary>CSV 导入</summary>
             <input
-                type='file'
-                name='file'
-                accept='text/csv'
-                onChange={e => {
+                type="file"
+                name="file"
+                accept="text/csv"
+                onChange={ e => {
                     const files = e.target.files
                     if (files != null && files.length > 0) {
                         handleCsvFileInputChange(files)
                     }
-                }}
+                } }
             />
-            <button onClick={handleCsvImportBtnClick}>提交</button>
+            <button onClick={ handleCsvImportBtnClick }>提交</button>
         </details>
-    );
+    )
 }
 
-export default CsvImport;
+export default CsvImport

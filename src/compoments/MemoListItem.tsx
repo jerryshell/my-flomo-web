@@ -1,19 +1,19 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import memoApi from '../api/memoApi'
 import Memo from '../interfaces/Memo'
-import {useRecoilState} from 'recoil'
-import {atoms} from '../atoms/atoms'
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms/atoms'
 
 const MemoListItem = (props: {
     memo: Memo,
 }) => {
     const [editModeFlag, setEditModeFlag] = useState(false)
-    const [memo, setMemo] = useState({...props.memo})
+    const [memo, setMemo] = useState({ ...props.memo })
     const [memoList, setMemoList] = useRecoilState(atoms.memoList)
 
     const handleTextareaChange = (e: { target: { value: string } }) => {
         const content = e.target.value
-        const newMemo = {...memo, content}
+        const newMemo = { ...memo, content }
         setMemo(newMemo)
     }
 
@@ -39,20 +39,23 @@ const MemoListItem = (props: {
 
     const handleCancelBtnClick = () => {
         setEditModeFlag(false)
-        setMemo({...props.memo})
+        setMemo({ ...props.memo })
     }
 
     return (
-        <details open key={memo.id}>
+        <details
+            open
+            key={ memo.id }
+        >
             <summary>
-                {memo.createdAt}
+                { memo.createdAt }
             </summary>
-            <p style={{whiteSpace: 'pre-line'}}>
+            <p style={ { whiteSpace: 'pre-line' } }>
                 {
                     editModeFlag
                         ? <textarea
-                            value={memo.content}
-                            onChange={handleTextareaChange}
+                            value={ memo.content }
+                            onChange={ handleTextareaChange }
                         />
                         : memo.content
                 }
@@ -62,29 +65,29 @@ const MemoListItem = (props: {
                     editModeFlag
                         ? <>
                             <button
-                                style={{float: 'right'}}
-                                onClick={handleUpdateBtnClick}
+                                style={ { float: 'right' } }
+                                onClick={ handleUpdateBtnClick }
                             >
                                 更新
                             </button>
                             <button
-                                style={{float: 'right'}}
-                                onClick={handleCancelBtnClick}
+                                style={ { float: 'right' } }
+                                onClick={ handleCancelBtnClick }
                             >
                                 取消
                             </button>
                         </>
                         : <button
-                            style={{float: 'right'}}
-                            onClick={() => setEditModeFlag(true)}
+                            style={ { float: 'right' } }
+                            onClick={ () => setEditModeFlag(true) }
                         >
                             编辑
                         </button>
                 }
 
                 <button
-                    style={{color: '#9E3B37', float: 'right'}}
-                    onClick={() => handleMemoDeleteBtnClick(memo.id)}
+                    style={ { color: '#9E3B37', float: 'right' } }
+                    onClick={ () => handleMemoDeleteBtnClick(memo.id) }
                 >
                     删除
                 </button>

@@ -18,9 +18,9 @@ const DangerousArea = (props: {
     return (
         <details>
             <summary>️⚠️ 危险区 ⚠️</summary>
-            <button onClick={deleteMyAccount}>⚠️ 账号注销，永久抹除数据，无法恢复，点击立刻生效 ⚠️</button>
+            <button onClick={ deleteMyAccount }>⚠️ 账号注销，永久抹除数据，无法恢复，点击立刻生效 ⚠️</button>
         </details>
-    );
+    )
 }
 
-export default DangerousArea;
+export default DangerousArea

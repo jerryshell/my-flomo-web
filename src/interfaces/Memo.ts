@@ -1,8 +1,8 @@
 interface Memo {
     id: string,
-    createdAt: Date,
-    updatedAt: Date,
-    deletedAt: Date,
+    createdAt: string,
+    updatedAt: string,
+    deletedAt: string,
     userId: string,
     content: string,
 }

@@ -7,8 +7,8 @@ import DangerousArea from '../compoments/DangerousArea'
 import PluginToken from '../compoments/PluginToken'
 import UserEmailUpdate from '../compoments/UserEmailUpdate'
 import MemoList from '../compoments/MemoList'
-import {useSetRecoilState} from 'recoil'
-import {atoms} from '../atoms/atoms'
+import { useSetRecoilState } from 'recoil'
+import { atoms } from '../atoms/atoms'
 
 const HomePage = (props: {
     fetchMemoList(): void
@@ -30,28 +30,28 @@ const HomePage = (props: {
     return (
         <>
             <MemoCreate
-                fetchMemoList={props.fetchMemoList}
+                fetchMemoList={ props.fetchMemoList }
             />
 
             <button
-                onClick={logout}
-                style={{color: '#9E3B37'}}
+                onClick={ logout }
+                style={ { color: '#9E3B37' } }
             >
                 登出
             </button>
 
             <FlomoImport
-                fetchMemoList={props.fetchMemoList}
+                fetchMemoList={ props.fetchMemoList }
             />
 
             <CsvExport/>
 
             <CsvImport
-                fetchMemoList={props.fetchMemoList}
+                fetchMemoList={ props.fetchMemoList }
             />
 
             <DangerousArea
-                logout={logout}
+                logout={ logout }
             />
 
             <PluginToken/>

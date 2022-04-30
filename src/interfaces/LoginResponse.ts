@@ -5,4 +5,4 @@ interface LoginResponse {
     expiresAt: string,
 }
 
-export default LoginResponse;
+export default LoginResponse

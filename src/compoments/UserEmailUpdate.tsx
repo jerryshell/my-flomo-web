@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import {useRecoilState, useRecoilValue} from 'recoil'
-import {atoms} from '../atoms/atoms'
+import React, { useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { atoms } from '../atoms/atoms'
 import userApi from '../api/userApi'
 
 const UserEmailUpdate = () => {
@@ -31,18 +31,18 @@ const UserEmailUpdate = () => {
     return (
         <details>
             <summary>更新邮箱</summary>
-            <p>当前用户：{username}</p>
-            <p>当前邮箱：{email}</p>
+            <p>当前用户：{ username }</p>
+            <p>当前邮箱：{ email }</p>
             <fieldset>
                 <legend>将邮箱设置为空，即可退订每日回顾</legend>
                 <input
-                    type='text'
-                    onChange={(e) => setNewEmail(e.target.value)}
-                    value={newEmail}
-                    placeholder='请输入新邮箱'
+                    type="text"
+                    onChange={ (e) => setNewEmail(e.target.value) }
+                    value={ newEmail }
+                    placeholder="请输入新邮箱"
                 />
             </fieldset>
-            <button onClick={handleUpdateEmailBtnClick}>提交</button>
+            <button onClick={ handleUpdateEmailBtnClick }>提交</button>
         </details>
     )
 }

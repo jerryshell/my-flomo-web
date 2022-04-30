@@ -1,13 +1,13 @@
 import './App.css'
-import React, {useEffect} from 'react'
-import {Route, Routes, useNavigate} from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Footer from './compoments/Footer'
 import LoginPage from './pages/LoginPage'
 import Header from './compoments/Header'
 import memoApi from './api/memoApi'
 import HomePage from './pages/HomePage'
-import {useRecoilValue, useSetRecoilState} from 'recoil'
-import {atoms} from './atoms/atoms'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { atoms } from './atoms/atoms'
 
 function App() {
     const token = useRecoilValue(atoms.token)
@@ -41,18 +41,21 @@ function App() {
             <Routes>
 
                 <Route
-                    path='/login'
-                    element={<LoginPage/>}
+                    path="/login"
+                    element={ <LoginPage/> }
                 />
 
-                {token &&
+                { token &&
                     <Route
-                        path='/home'
-                        element={<HomePage fetchMemoList={fetchMemoList}/>}
+                        path="/home"
+                        element={ <HomePage fetchMemoList={ fetchMemoList }/> }
                     />
                 }
 
-                <Route path='*' element={<>404</>}/>
+                <Route
+                    path="*"
+                    element={ <>404</> }
+                />
 
             </Routes>
 

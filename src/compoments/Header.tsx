@@ -1,8 +1,16 @@
 import React from 'react'
+import logo from '../favicon.svg'
 
 const Header = () => {
     return (
-        <h1>My Flomo</h1>
+        <h1>
+            <img
+                src={ logo }
+                alt="logo"
+            />
+            <span> </span>
+            <span>My Flomo</span>
+        </h1>
     )
 }
 

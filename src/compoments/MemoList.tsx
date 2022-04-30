@@ -1,6 +1,6 @@
 import MemoListItem from './MemoListItem'
-import {useRecoilState} from 'recoil'
-import {atoms} from '../atoms/atoms'
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms/atoms'
 
 const MemoList = () => {
     const [memoList, setMemoList] = useRecoilState(atoms.memoList)
@@ -10,8 +10,8 @@ const MemoList = () => {
             {
                 memoList.map(memo => (
                     <MemoListItem
-                        memo={memo}
-                        key={memo.id}
+                        memo={ memo }
+                        key={ memo.id }
                     />
                 ))
             }

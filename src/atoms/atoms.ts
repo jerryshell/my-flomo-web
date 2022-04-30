@@ -1,4 +1,4 @@
-import {atom} from 'recoil'
+import { atom } from 'recoil'
 import Memo from '../interfaces/Memo'
 
 export const atoms = {
