@@ -1,5 +1,6 @@
 FROM node:lts as builder
 
+# 服务端 API 地址
 ENV VITE_API_BASE_URL="https://my-flomo-api.d8s.fun"
 
 # 中国大陆的 GitHub 镜像
@@ -17,5 +18,7 @@ RUN git clone ${GIT_BASE_URL}/jerryshell/my-flomo-web.git \
 # --
 
 FROM nginx:stable-alpine
+
+COPY --from=builder /my-flomo-web/nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /my-flomo-web/dist /usr/share/nginx/html

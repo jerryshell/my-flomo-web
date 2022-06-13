@@ -15,6 +15,30 @@
 
 [https://my-flomo.pages.dev](https://my-flomo.pages.dev)
 
+## 如何运行
+
+### 1. 下载 Dockerfile
+
+```shell
+wget https://raw.githubusercontent.com/jerryshell/my-flomo-web/master/Dockerfile
+```
+
+### 2. 修改 Dockerfile
+
+将 `VITE_API_BASE_URL` 修改为你的 API 地址，如：`https://my-flomo-api.d8s.fun`
+
+### 3. 打包
+
+```shell
+docker build -t my-flomo-web .
+```
+
+### 4. 启动
+
+```shell
+docker run -p --rm 9090:80 my-flomo-web
+```
+
 # 相关项目
 
 * [Web 端](https://github.com/jerryshell/my-flomo-web)
