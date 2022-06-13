@@ -30,13 +30,13 @@ wget https://raw.githubusercontent.com/jerryshell/my-flomo-web/master/Dockerfile
 ### 3. 打包
 
 ```shell
-docker build -t my-flomo-web .
+docker build -t my-flomo-web . --no-cache
 ```
 
 ### 4. 启动
 
 ```shell
-docker run -p --rm 9090:80 my-flomo-web
+docker run --rm -p 9090:80 my-flomo-web
 ```
 
 # 相关项目
