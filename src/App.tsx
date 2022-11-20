@@ -10,58 +10,58 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { atoms } from './atoms/atoms'
 
 function App() {
-    const token = useRecoilValue(atoms.token)
-    const setMemoList = useSetRecoilState(atoms.memoList)
+  const token = useRecoilValue(atoms.token)
+  const setMemoList = useSetRecoilState(atoms.memoList)
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const fetchMemoList = () => {
-        return memoApi.list()
-            .then(response => {
-                const success = response.data.success
-                if (success) {
-                    const memoList = response.data.data
-                    setMemoList(memoList)
-                }
-            })
-    }
-
-    useEffect(() => {
-        if (token) {
-            fetchMemoList().then(() => navigate('/home'))
-        } else {
-            navigate('/login')
+  const fetchMemoList = () => {
+    return memoApi.list()
+      .then(response => {
+        const success = response.data.success
+        if (success) {
+          const memoList = response.data.data
+          setMemoList(memoList)
         }
-    }, [token])
+      })
+  }
 
-    return (
-        <>
-            <Header/>
+  useEffect(() => {
+    if (token) {
+      fetchMemoList().then(() => navigate('/home'))
+    } else {
+      navigate('/login')
+    }
+  }, [token])
 
-            <Routes>
+  return (
+    <>
+      <Header/>
 
-                <Route
-                    path="/login"
-                    element={ <LoginPage/> }
-                />
+      <Routes>
 
-                { token &&
-                    <Route
-                        path="/home"
-                        element={ <HomePage fetchMemoList={ fetchMemoList }/> }
-                    />
-                }
+        <Route
+          path="/login"
+          element={<LoginPage/>}
+        />
 
-                <Route
-                    path="*"
-                    element={ <>404</> }
-                />
+        {token &&
+          <Route
+            path="/home"
+            element={<HomePage fetchMemoList={fetchMemoList}/>}
+          />
+        }
 
-            </Routes>
+        <Route
+          path="*"
+          element={<>404</>}
+        />
 
-            <Footer/>
-        </>
-    )
+      </Routes>
+
+      <Footer/>
+    </>
+  )
 }
 
 export default App

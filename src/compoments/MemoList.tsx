@@ -1,22 +1,22 @@
 import MemoListItem from './MemoListItem'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { atoms } from '../atoms/atoms'
 
 const MemoList = () => {
-    const [memoList, setMemoList] = useRecoilState(atoms.memoList)
+  const memoList = useRecoilValue(atoms.memoList)
 
-    return (
-        <>
-            {
-                memoList.map(memo => (
-                    <MemoListItem
-                        memo={ memo }
-                        key={ memo.id }
-                    />
-                ))
-            }
-        </>
-    )
+  return (
+    <>
+      {
+        memoList.map(memo => (
+          <MemoListItem
+            memo={memo}
+            key={memo.id}
+          />
+        ))
+      }
+    </>
+  )
 }
 
 export default MemoList

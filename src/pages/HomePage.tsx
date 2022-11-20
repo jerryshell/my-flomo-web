@@ -11,56 +11,56 @@ import { useSetRecoilState } from 'recoil'
 import { atoms } from '../atoms/atoms'
 
 const HomePage = (props: {
-    fetchMemoList(): void
+  fetchMemoList(): void
 }) => {
-    const setUsername = useSetRecoilState(atoms.username)
-    const setEmail = useSetRecoilState(atoms.email)
-    const setToken = useSetRecoilState(atoms.token)
+  const setUsername = useSetRecoilState(atoms.username)
+  const setEmail = useSetRecoilState(atoms.email)
+  const setToken = useSetRecoilState(atoms.token)
 
-    const logout = () => {
-        setUsername('')
-        setEmail('')
-        setToken('')
-        localStorage.removeItem('username')
-        localStorage.removeItem('email')
-        localStorage.removeItem('token')
-        localStorage.removeItem('expiresAt')
-    }
+  const logout = () => {
+    setUsername('')
+    setEmail('')
+    setToken('')
+    localStorage.removeItem('username')
+    localStorage.removeItem('email')
+    localStorage.removeItem('token')
+    localStorage.removeItem('expiresAt')
+  }
 
-    return (
-        <>
-            <MemoCreate
-                fetchMemoList={ props.fetchMemoList }
-            />
+  return (
+    <>
+      <MemoCreate
+        fetchMemoList={props.fetchMemoList}
+      />
 
-            <button
-                onClick={ logout }
-                style={ { color: '#9E3B37' } }
-            >
-                登出
-            </button>
+      <button
+        onClick={logout}
+        style={{ color: '#9E3B37' }}
+      >
+        登出
+      </button>
 
-            <FlomoImport
-                fetchMemoList={ props.fetchMemoList }
-            />
+      <FlomoImport
+        fetchMemoList={props.fetchMemoList}
+      />
 
-            <CsvExport/>
+      <CsvExport/>
 
-            <CsvImport
-                fetchMemoList={ props.fetchMemoList }
-            />
+      <CsvImport
+        fetchMemoList={props.fetchMemoList}
+      />
 
-            <DangerousArea
-                logout={ logout }
-            />
+      <DangerousArea
+        logout={logout}
+      />
 
-            <PluginToken/>
+      <PluginToken/>
 
-            <UserEmailUpdate/>
+      <UserEmailUpdate/>
 
-            <MemoList/>
-        </>
-    )
+      <MemoList/>
+    </>
+  )
 }
 
 export default HomePage
