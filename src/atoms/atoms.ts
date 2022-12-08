@@ -18,4 +18,8 @@ export const atoms = {
     key: 'memoList',
     default: Array<Memo>(),
   }),
+  memoKeyword: atom({
+    key: 'memoKeyword',
+    default: '',
+  }),
 }
