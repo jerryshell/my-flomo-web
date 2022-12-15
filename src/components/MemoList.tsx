@@ -7,12 +7,17 @@ import {useMemo} from 'react'
 const MemoList = () => {
     const memoList = useRecoilValue(atoms.memoList)
     const memoKeyword = useRecoilValue(atoms.memoKeyword)
-    const memoShowList = useMemo(() => memoList.filter(
-        item => item.id.includes(memoKeyword) ||
-            item.content.includes(memoKeyword) ||
-            item.userId.includes(memoKeyword) ||
-            item.createdAt.includes(memoKeyword)
-    ), [memoList, memoKeyword])
+    const memoShowList = useMemo(() => {
+        const memoKeywordSplit = memoKeyword.split(' ').filter(item => item.length > 0)
+        if (memoKeywordSplit.length <= 0) {
+            return memoList
+        }
+        return memoList.filter(item => {
+            return Object.values(item).some(value => {
+                return memoKeywordSplit.some(keyword => value && value.includes(keyword));
+            })
+        })
+    }, [memoList, memoKeyword])
 
     return (
         <>

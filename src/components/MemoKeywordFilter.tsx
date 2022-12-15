@@ -9,7 +9,7 @@ const MemoKeywordFilter = () => {
             <summary>关键字模糊筛选</summary>
             <div style={{display: 'flex', flexWrap: 'wrap'}}>
                 <input
-                    placeholder='关键字模糊筛选'
+                    placeholder='多个关键字使用空格分割'
                     type='text'
                     value={memoKeyword}
                     onChange={e => setMemoKeyword(e.target.value)}
