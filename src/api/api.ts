@@ -1,16 +1,13 @@
-import axios from 'axios'
+import axios, {AxiosHeaders} from 'axios'
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
 })
 
 api.interceptors.request.use(async (config) => {
-    if (!config.headers) {
-        config.headers = {}
-    }
     const token = localStorage.getItem('token')
     if (token) {
-        config.headers.token = token
+        (config.headers as AxiosHeaders).set('token', token)
     }
     return config
 })
