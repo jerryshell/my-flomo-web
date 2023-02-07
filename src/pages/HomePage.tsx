@@ -9,6 +9,7 @@ import UserEmailUpdate from '../components/UserEmailUpdate'
 import MemoList from '../components/MemoList'
 import {useSetRecoilState} from 'recoil'
 import {atoms} from '../atoms/atoms'
+import UserPasswordUpdate from '../components/UserPasswordUpdate'
 
 const HomePage = (props: {
     fetchMemoList(): void
@@ -57,6 +58,8 @@ const HomePage = (props: {
             <PluginToken/>
 
             <UserEmailUpdate/>
+
+            <UserPasswordUpdate/>
 
             <MemoList/>
         </>
