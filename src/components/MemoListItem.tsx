@@ -1,20 +1,20 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import memoApi from '../api/memoApi'
 import Memo from '../interfaces/Memo'
-import {useRecoilState} from 'recoil'
-import {atoms} from '../atoms/atoms'
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms/atoms'
 import dayjs from 'dayjs'
 
 const MemoListItem = (props: {
     memo: Memo,
 }) => {
     const [editModeFlag, setEditModeFlag] = useState(false)
-    const [memo, setMemo] = useState({...props.memo})
+    const [memo, setMemo] = useState({ ...props.memo })
     const [memoList, setMemoList] = useRecoilState(atoms.memoList)
 
     const handleTextareaChange = (e: { target: { value: string } }) => {
         const content = e.target.value
-        const newMemo = {...memo, content}
+        const newMemo = { ...memo, content }
         setMemo(newMemo)
     }
 
@@ -40,7 +40,7 @@ const MemoListItem = (props: {
 
     const handleCancelBtnClick = () => {
         setEditModeFlag(false)
-        setMemo({...props.memo})
+        setMemo({ ...props.memo })
     }
 
     return (
@@ -51,7 +51,7 @@ const MemoListItem = (props: {
             <summary>
                 {dayjs(memo.createdAt).format('YYYY-MM-DD HH:mm:ss')}
             </summary>
-            <p style={{whiteSpace: 'pre-line'}}>
+            <p style={{ whiteSpace: 'pre-wrap' }}>
                 {
                     editModeFlag
                         ? <textarea
@@ -66,20 +66,20 @@ const MemoListItem = (props: {
                     editModeFlag
                         ? <>
                             <button
-                                style={{float: 'right'}}
+                                style={{ float: 'right' }}
                                 onClick={handleUpdateBtnClick}
                             >
                                 更新
                             </button>
                             <button
-                                style={{float: 'right'}}
+                                style={{ float: 'right' }}
                                 onClick={handleCancelBtnClick}
                             >
                                 取消
                             </button>
                         </>
                         : <button
-                            style={{float: 'right'}}
+                            style={{ float: 'right' }}
                             onClick={() => setEditModeFlag(true)}
                         >
                             编辑
@@ -87,7 +87,7 @@ const MemoListItem = (props: {
                 }
 
                 <button
-                    style={{color: '#9E3B37', float: 'right'}}
+                    style={{ color: '#9E3B37', float: 'right' }}
                     onClick={() => handleMemoDeleteBtnClick(memo.id)}
                 >
                     删除
