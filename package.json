@@ -15,10 +15,10 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.7"
+    "typescript": "^5.4.4",
+    "vite": "^5.2.8"
   }
 }
