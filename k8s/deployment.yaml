@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: my-flomo-web
+  labels:
+    app: my-flomo-web
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-flomo-web
+  template:
+    metadata:
+      labels:
+        app: my-flomo-web
+    spec:
+      containers:
+        - name: my-flomo-web
+          image: jerryshell/my-flomo-web:latest
+          ports:
+            - name: http
+              containerPort: 80

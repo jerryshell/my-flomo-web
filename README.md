@@ -7,49 +7,42 @@
 * 邮件每日回顾
 * 注销账号，永久抹除数据
 * CSV 数据导入导出
-* 服务端支持 ARMv7 部署
+* Docker 镜像支持 ARMv7（树莓派）
 
 ## 体验 Demo
 
-**⚠ 注意 ⚠ 推荐每个用户单独搭建自己的服务，体验 Demo 不保证数据安全性，所以请勿在体验 Demo 中使用真实用户名密码注册！请勿在体验
-Demo 中录入敏感数据！**
+~~[https://my-flomo.d8s.fun](https://my-flomo.d8s.fun)~~
 
-~~[https://my-flomo.pages.dev](https://my-flomo.pages.dev/)~~ **服务器到期，体验 Demo 已经关闭**
+**服务器到期，体验 Demo 的后端已经关闭**
 
 ## 如何运行
 
-### 1. 下载 Dockerfile
+### Docker
 
-```shell
+```bash
+# 1. 下载 Dockerfile
 wget https://raw.githubusercontent.com/jerryshell/my-flomo-web/master/Dockerfile
-```
 
-### 2. 修改 Dockerfile
+# 2. 修改 Dockerfile
+# 将 `VITE_API_BASE_URL` 修改为你的 API 地址，如：`https://my-flomo-api.d8s.fun`
+vim Dockerfile
 
-将 `VITE_API_BASE_URL` 修改为你的 API 地址，如：`https://my-flomo-api.d8s.fun`
-
-### 3. 打包
-
-```shell
+# 3. 构建
 docker build -t my-flomo-web . --no-cache
-```
 
-### 4. 启动
-
-```shell
+# 4. 启动
 docker run --rm -p 9090:80 my-flomo-web
 ```
 
-# 相关项目
+### K8s
+
+具体请参考 [k8s/*.yaml](k8s)，要注意修改为你自己构建的镜像
+
+## 相关项目
 
 * [Web 端](https://github.com/jerryshell/my-flomo-web)
 * [服务端](https://github.com/jerryshell/my-flomo-server)
 
-# 感谢
-
-* [Flomo](https://flomoapp.com) （灵感来源）
-* [Water.css](https://watercss.kognise.dev) （让后端工程师脱离 CSS 苦海）
-
-## 开源许可证
+## 开源协议
 
 [GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0)

@@ -1,12 +1,10 @@
-FROM node:lts as builder
+FROM node:lts AS builder
 
 # 服务端 API 地址
-ENV VITE_API_BASE_URL="https://my-flomo-api.d8s.fun"
+# ENV VITE_API_BASE_URL="https://my-flomo-api.d8s.fun"
+ENV VITE_API_BASE_URL="http://flomo-api.jerryshell.eu.org"
 
-# 中国大陆的 GitHub 镜像
-ENV GIT_BASE_URL="https://hub.fastgit.xyz"
-# 如果你的国际网络没问题，就用下面这个
-#ENV GIT_BASE_URL="https://github.com"
+ENV GIT_BASE_URL="https://github.com"
 
 WORKDIR /
 
@@ -15,7 +13,7 @@ RUN git clone ${GIT_BASE_URL}/jerryshell/my-flomo-web.git \
     && yarn install \
     && yarn build
 
-# --
+# ---
 
 FROM nginx:stable-alpine
 
