@@ -24,7 +24,7 @@
 wget https://raw.githubusercontent.com/jerryshell/my-flomo-web/master/Dockerfile
 
 # 2. 修改 Dockerfile
-# 将 VITE_API_BASE_URL 修改为你的 API 地址，如：https://my-flomo-api.d8s.fun
+# 将 VITE_API_BASE_URL 修改为你的 API 地址，如：https://flomo-api.jerryshell.eu.org
 vim Dockerfile
 
 # 3. 构建
