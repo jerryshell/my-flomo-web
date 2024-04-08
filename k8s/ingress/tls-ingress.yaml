@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alist-tls-ingress
+  name: my-flomo-web-tls-ingress
   annotations:
     spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -15,10 +15,10 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: alist
+                name: my-flomo-web
                 port:
                   name: http
   tls:
-    - secretName: alist-tls
+    - secretName: my-flomo-web-tls
       hosts:
         - flomo.jerryshell.eu.org
