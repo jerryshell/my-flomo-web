@@ -7,18 +7,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-    "dayjs": "^1.11.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
+    "axios": "^1.7.2",
+    "dayjs": "^1.11.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
-    "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.4",
-    "vite": "^5.2.8"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.4"
   }
 }
