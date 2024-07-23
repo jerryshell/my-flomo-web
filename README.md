@@ -20,8 +20,8 @@
 ### Docker
 
 ```bash
-# 1. 下载 Dockerfile
-wget https://raw.githubusercontent.com/jerryshell/my-flomo-web/master/Dockerfile
+# 1. git clone
+git clone https://github.com/jerryshell/my-flomo-web.git
 
 # 2. 修改 Dockerfile
 # 将 VITE_API_BASE_URL 修改为你的 API 地址，如：https://flomo-api.jerryshell.eu.org

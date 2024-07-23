@@ -5,12 +5,10 @@ ENV VITE_API_BASE_URL="https://flomo-api.jerryshell.eu.org"
 
 ENV GIT_BASE_URL="https://github.com"
 
-WORKDIR /
-
-RUN git clone ${GIT_BASE_URL}/jerryshell/my-flomo-web.git \
-    && cd my-flomo-web \
-    && yarn install \
-    && yarn build
+WORKDIR /my-flomo-web
+COPY . .
+RUN npm install \
+    && npm run build
 
 # ---
 
