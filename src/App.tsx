@@ -1,67 +1,58 @@
-import './App.css'
-import React, {useEffect} from 'react'
-import {Route, Routes, useNavigate} from 'react-router-dom'
-import Footer from './components/Footer'
-import LoginPage from './pages/LoginPage'
-import Header from './components/Header'
-import memoApi from './api/memoApi'
-import HomePage from './pages/HomePage'
-import {useRecoilValue, useSetRecoilState} from 'recoil'
-import {atoms} from './atoms/atoms'
+import "./App.css";
+import { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Footer from "./components/Footer";
+import LoginPage from "./pages/LoginPage";
+import Header from "./components/Header";
+import memoApi from "./api/memoApi";
+import HomePage from "./pages/HomePage";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { atoms } from "./atoms/atoms";
 
 function App() {
-    const token = useRecoilValue(atoms.token)
-    const setMemoList = useSetRecoilState(atoms.memoList)
+  const token = useRecoilValue(atoms.token);
+  const setMemoList = useSetRecoilState(atoms.memoList);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const fetchMemoList = () => {
-        return memoApi.list()
-            .then(response => {
-                const success = response.data.success
-                if (success) {
-                    const memoList = response.data.data
-                    setMemoList(memoList)
-                }
-            })
+  const fetchMemoList = () => {
+    return memoApi.list().then((response) => {
+      const success = response.data.success;
+      if (success) {
+        const memoList = response.data.data;
+        setMemoList(memoList);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (token) {
+      fetchMemoList().then(() => navigate("/home"));
+    } else {
+      navigate("/login");
     }
+  }, [token]);
 
-    useEffect(() => {
-        if (token) {
-            fetchMemoList().then(() => navigate('/home'))
-        } else {
-            navigate('/login')
-        }
-    }, [token])
+  return (
+    <>
+      <Header />
 
-    return (
-        <>
-            <Header/>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
 
-            <Routes>
+        {token && (
+          <Route
+            path="/home"
+            element={<HomePage fetchMemoList={fetchMemoList} />}
+          />
+        )}
 
-                <Route
-                    path="/login"
-                    element={<LoginPage/>}
-                />
+        <Route path="*" element={<>404</>} />
+      </Routes>
 
-                {token &&
-                    <Route
-                        path="/home"
-                        element={<HomePage fetchMemoList={fetchMemoList}/>}
-                    />
-                }
-
-                <Route
-                    path="*"
-                    element={<>404</>}
-                />
-
-            </Routes>
-
-            <Footer/>
-        </>
-    )
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
