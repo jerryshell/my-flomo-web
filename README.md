@@ -7,7 +7,6 @@
 - 邮件每日回顾
 - 注销账号，永久抹除数据
 - CSV 数据导入导出
-- Docker 镜像支持 ARMv7（树莓派）
 
 ## 体验 Demo
 
@@ -17,33 +16,33 @@
 
 ## 如何运行
 
-### Docker
+### 本地开发
 
 ```bash
-# 1. git clone
+# 1. 克隆项目
 git clone https://github.com/jerryshell/my-flomo-web.git
+cd my-flomo-web
 
-# 2. 修改 Dockerfile
-# 将 VITE_API_BASE_URL 修改为你的 API 地址，如：https://flomo-api.jerryshell.eu.org
-vim Dockerfile
+# 2. 安装依赖
+npm install
 
-# 3. 构建
-docker build -t my-flomo-web . --no-cache
+# 3. 修改环境变量
+# 将 .env 文件中的 VITE_API_BASE_URL 修改为你的 API 地址
+vim .env
 
-# 4. 启动
-docker run --rm -p 9090:80 my-flomo-web
+# 4. 启动开发服务器
+npm run dev
 ```
 
-### K8s
+### 构建生产版本
 
-请参考 [k8s/\*.yaml](k8s)
+```bash
+# 1. 构建项目
+npm run build
 
-要注意修改：
-
-- `deployment.yaml` 的 `image`
-- `ingress/ingress.yaml` 的 `host`
-- `ingress/tls-ingress.yaml` 的 `host`
-  - 这里的 TLS 需要前置条件，具体请看：[K8s Traefik cert-manager DNS01 TLS](https://github.com/jerryshell/k8s-traefik-cert-manager-dns01-tls)
+# 2. 预览构建结果
+npm run preview
+```
 
 ## 相关项目
 
