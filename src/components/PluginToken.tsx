@@ -24,7 +24,17 @@ const PluginToken = () => {
 
   const handleGeneratePluginTokenBtnClick = () => {
     pluginApi.createToken().then((response) => {
-      setPluginToken(response.data.data);
+      const success = response.data.success;
+      if (success) {
+        setPluginToken(response.data.data);
+        setErrorMessage("");
+      } else {
+        setPluginToken("");
+        setErrorMessage(response.data.message);
+      }
+    }).catch((error) => {
+      console.error("createToken error", error);
+      setErrorMessage("生成令牌失败，请稍后重试");
     });
   };
 
