@@ -15,7 +15,6 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(async (response) => {
   const token = localStorage.getItem("token");
   if (response.data.code === 401 && token) {
-    localStorage.removeItem("username");
     localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresAt");

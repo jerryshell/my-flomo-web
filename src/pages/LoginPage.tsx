@@ -30,20 +30,19 @@ const Logging = () => (
 );
 
 const LoginPage = () => {
-  const [username, setUsername] = useRecoilState(atoms.username);
-  const setEmail = useSetRecoilState(atoms.email);
+  const [email, setEmail] = useRecoilState(atoms.email);
   const setToken = useSetRecoilState(atoms.token);
 
   const [password, setPassword] = useState("");
   const [logging, setLogging] = useState(false);
 
   const handleLoginClick = () => {
-    if (username.length <= 0 || password.length <= 0) {
-      alert("用户名和密码不能为空");
+    if (email.length <= 0 || password.length <= 0) {
+      alert("邮箱和密码不能为空");
       return;
     }
     const postData = {
-      username,
+      email,
       password,
     };
     setLogging(true);
@@ -69,10 +68,8 @@ const LoginPage = () => {
   };
 
   const handleLoginSuccess = (loginResponse: LoginResponse) => {
-    setUsername(loginResponse.username);
     setEmail(loginResponse.email);
     setToken(loginResponse.token);
-    localStorage.setItem("username", loginResponse.username);
     localStorage.setItem("email", loginResponse.email);
     localStorage.setItem("token", loginResponse.token);
     localStorage.setItem("expiresAt", loginResponse.expiresAt);
@@ -88,10 +85,10 @@ const LoginPage = () => {
     <fieldset onKeyUp={handleKeyUp}>
       <legend>不存在的账号将自动注册</legend>
       <input
-        type="text"
-        placeholder="账号"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        type="email"
+        placeholder="邮箱"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"

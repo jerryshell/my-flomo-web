@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import uploadApi from "../api/uploadApi";
 
 const FlomoImport = (props: { fetchMemoList: () => void }) => {

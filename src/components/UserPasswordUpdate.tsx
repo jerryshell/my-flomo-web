@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import userApi from "../api/userApi";
 
 const UserPasswordUpdate = () => {

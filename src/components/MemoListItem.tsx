@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import memoApi from "../api/memoApi";
 import Memo from "../interfaces/Memo";
 import { useRecoilState } from "recoil";

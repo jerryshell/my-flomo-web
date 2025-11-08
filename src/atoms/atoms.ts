@@ -6,10 +6,6 @@ export const atoms = {
     key: "token",
     default: localStorage.getItem("token") || "",
   }),
-  username: atom({
-    key: "username",
-    default: localStorage.getItem("username") || "",
-  }),
   email: atom({
     key: "email",
     default: localStorage.getItem("email") || "",

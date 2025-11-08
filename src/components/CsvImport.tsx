@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import csvApi from "../api/csvApi";
 
 const CsvImport = (props: { fetchMemoList: () => void }) => {

@@ -4,22 +4,18 @@ import CsvExport from "../components/CsvExport";
 import CsvImport from "../components/CsvImport";
 import DangerousArea from "../components/DangerousArea";
 import PluginToken from "../components/PluginToken";
-import UserEmailUpdate from "../components/UserEmailUpdate";
 import MemoList from "../components/MemoList";
 import { useSetRecoilState } from "recoil";
 import { atoms } from "../atoms/atoms";
 import UserPasswordUpdate from "../components/UserPasswordUpdate";
 
 const HomePage = (props: { fetchMemoList(): void }) => {
-  const setUsername = useSetRecoilState(atoms.username);
   const setEmail = useSetRecoilState(atoms.email);
   const setToken = useSetRecoilState(atoms.token);
 
   const logout = () => {
-    setUsername("");
     setEmail("");
     setToken("");
-    localStorage.removeItem("username");
     localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresAt");
@@ -42,8 +38,6 @@ const HomePage = (props: { fetchMemoList(): void }) => {
       <DangerousArea logout={logout} />
 
       <PluginToken />
-
-      <UserEmailUpdate />
 
       <UserPasswordUpdate />
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import memoApi from "../api/memoApi";
 
 const MemoCreate = (props: { fetchMemoList(): void }) => {
