@@ -8,12 +8,6 @@
 - 注销账号，永久抹除数据
 - CSV 数据导入导出
 
-## 体验 Demo
-
-~~[https://my-flomo.d8s.fun](https://my-flomo.d8s.fun)~~
-
-**服务器到期，体验 Demo 的后端已经关闭**
-
 ## 如何运行
 
 ### 本地开发
